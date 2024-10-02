@@ -6,3 +6,12 @@ dotenv.config()
 
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json())
+app.use(cookiePaeser())
+app.use(cors())
+
+app.listen(PORT, ()=>{
+    console.log(`Server is running on port ${PORT}`);
+});
