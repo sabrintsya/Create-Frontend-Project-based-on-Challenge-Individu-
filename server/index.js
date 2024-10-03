@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cookiePaeser  from "cookie-parser";
 import cors from 'cors';
 import { userRoute } from './routes/userRoute.js';
+import { courseRoute } from './routes/courseRoute.js';
 dotenv.config()
 
 const app = express();
@@ -18,3 +19,4 @@ app.listen(PORT, ()=>{
 });
 
 app.use('/api/user', userRoute)
+app.use("/api/course", courseRoute)
