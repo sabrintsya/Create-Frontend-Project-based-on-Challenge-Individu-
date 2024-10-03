@@ -11,7 +11,6 @@ export const createCourse = asyncHandler(async (req, res) => {
       city, 
       country, 
       image, 
-      facilities, 
       userEmail, 
    } = req.body.data
 
@@ -26,19 +25,19 @@ export const createCourse = asyncHandler(async (req, res) => {
             address, 
             country, 
             city, 
-            facilities, 
             image, 
-            owner : {connect : {email: userEmail} },
+            owner : {connect : {email: userEmail}},
          },
       });
 
-      res.send({})
+      res.send({message: "Course created successfully",
+         course
+      });
 
    } catch(err) {
-      if(err.code === "P2002")
-      {
-         throw new Error("A course with address alredy there")
+      if(err.code === "P2002") {
+        throw new Error("A course with address already exists")
       }
-      throw new Error("err.message")
-   }
-})
+      throw new Error(err.message)
+    }
+});
